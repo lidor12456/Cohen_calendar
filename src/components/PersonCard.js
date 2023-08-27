@@ -20,15 +20,18 @@ export default function PersonCard({ person }) {
   }, []);
   return (
     <>
-      <div class="flex flex-row">
-        {personData && console.log(personData.items[0].date)}
+      <div>
+        {personData && console.log(personData.items)}
+        <div>{/* <p>{person.name}</p> */}</div>
         <div>
-          <h3>Name</h3>
-          <p>{person.name}</p>
-        </div>
-        <div>
-          <h3>Dates</h3>
-          {personData && personData.items.map((item) => <p>{item.date}</p>)}
+          <div class="flex flex-row gap-3">
+            {personData &&
+              personData.items.map((item) => (
+                <div class="px-3 py-2 pe-0 rounded-lg bg-indigo-500 shadow-lg">
+                  {item.date}
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </>

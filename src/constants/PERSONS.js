@@ -6,5 +6,12 @@ export const PERSONS = [
     month: "06",
     year: "1993",
   },
+  {
+    id: "1",
+    name: "Oria",
+    day: "01",
+    month: "11",
+    year: "1994",
+  },
   {},
 ];
