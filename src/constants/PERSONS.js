@@ -7,11 +7,17 @@ export const PERSONS = [
     year: "1993",
   },
   {
-    id: "1",
+    id: "2",
     name: "Oria",
     day: "01",
     month: "11",
     year: "1994",
   },
-  {},
+  {
+    id: "3",
+    name: "Test",
+    day: "01",
+    month: "10",
+    year: "1956",
+  },
 ];

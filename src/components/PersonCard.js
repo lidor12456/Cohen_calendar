@@ -8,7 +8,7 @@ export default function PersonCard({ person }) {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `https://www.hebcal.com/yahrzeit?cfg=json&n1=${person.name}&t1=Birthday&d1=${person.day}&m1=${person.month}&y1=${person.year}&hebdate=on&years=10`
+          `https://www.hebcal.com/yahrzeit?cfg=json&n1=${person.name}&t1=Birthday&d1=${person.day}&m1=${person.month}&y1=${person.year}&hebdate=on&hdp=1&years=6`
         );
         console.log(data);
         setPersonData(data);
@@ -20,15 +20,18 @@ export default function PersonCard({ person }) {
   }, []);
   return (
     <>
-      <div>
+      <div class="rtl:mr-3">
         {personData && console.log(personData.items)}
-        <div>{/* <p>{person.name}</p> */}</div>
         <div>
-          <div class="flex flex-row gap-3">
+          <p>{person.name}</p>
+        </div>
+        <div>
+          <div class="flex flex-row flex-row-reverse gap-3">
             {personData &&
               personData.items.map((item) => (
-                <div class="px-3 py-2 pe-0 rounded-lg bg-indigo-500 shadow-lg">
-                  {item.date}
+                <div class="px-1 py-1 w-1/2  rounded-lg bg-indigo-500 shadow-lg">
+                  <p>{item.date}</p>
+                  <p>{`${item.heDateParts.d} ${item.heDateParts.m} ${item.heDateParts.y}`}</p>
                 </div>
               ))}
           </div>
