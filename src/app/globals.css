@@ -19,3 +19,7 @@
 body {
 
 }
+
+.rbc-event, .rbc-day-slot .rbc-background-event {
+  background-color: transparent !important;
+}

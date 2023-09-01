@@ -18,22 +18,27 @@ const events = [
 ];
 
 const EventComponent = ({ event }) => (
-  <div>
+  <div className="bg-white text-black p-2 rounded">
     <div>{event.title}</div>
-    <img src={event.imageUrl} alt={event.title} style={{ maxWidth: "100%" }} />
+    <img
+      className="w-fit h-fit object-cover"
+      src={event.imageUrl}
+      alt={event.title}
+    />
   </div>
 );
 
 export default function Home() {
   return (
+    // ! top and bottom display - to printing calendar by the browser :
     <>
-      <div class="flex flex-row h-screen w-screen">
-        <div class="w-1/3">
+      <div className="">
+        <div className=" w-screen h-screen">
           {PERSONS.map((person) => (
             <PersonCard person={person} key={Number(person.id)} />
           ))}
         </div>
-        <div class="w-2/3">
+        <div className="w-screen h-screen bg-white text-black p-2 rounded">
           <Calendar
             localizer={localizer}
             events={events}
@@ -46,5 +51,27 @@ export default function Home() {
         </div>
       </div>
     </>
+
+    // ! side by side display by flex box :
+    // <>
+    //   <div className="flex flex-row h-screen w-screen">
+    //     <div className="w-1/3">
+    //       {PERSONS.map((person) => (
+    //         <PersonCard person={person} key={Number(person.id)} />
+    //       ))}
+    //     </div>
+    //     <div className="w-2/3 bg-white text-black p-2 rounded">
+    //       <Calendar
+    //         localizer={localizer}
+    //         events={events}
+    //         startAccessor="start"
+    //         endAccessor="end"
+    //         defaultDate={new Date()}
+    //         views={["month"]}
+    //         components={{ event: EventComponent }}
+    //       />
+    //     </div>
+    //   </div>
+    // </>
   );
 }
