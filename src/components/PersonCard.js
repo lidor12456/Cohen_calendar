@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function PersonCard({ person }) {
   const [personData, setPersonData] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -18,6 +19,21 @@ export default function PersonCard({ person }) {
     };
     fetchData();
   }, []);
+  let events = [];
+  const createEventFromPersonDate = (personData) => {
+    personData.items.map((person) => {
+      events.push({
+        name: person.name,
+        year: person.date.slice(0, 4),
+        month: person.date.slice(5, 7),
+        day: person.date.slice(8, 10),
+      });
+    });
+    console.log(events);
+  };
+  if (personData) {
+    createEventFromPersonDate(personData);
+  }
   return (
     <>
       <div>
@@ -26,11 +42,14 @@ export default function PersonCard({ person }) {
           <p>{person.name}</p>
         </div>
         <div>
-          <div class="flex flex-row flex-row-reverse gap-3">
+          <div class="flex flex-row flex-row gap-3">
             {personData &&
               personData.items.map((item) => (
                 <div class="px-1 py-1 w-1/2 rounded-lg bg-[#e5e7eb] shadow-lg">
                   <p>{item.date}</p>
+                  <p>{item.date.slice(0, 4)}</p>
+                  <p>{item.date.slice(5, 7)}</p>
+                  <p>{item.date.slice(8, 10)}</p>
                   <p>{`${item.heDateParts.d} ${item.heDateParts.m} ${item.heDateParts.y}`}</p>
                 </div>
               ))}

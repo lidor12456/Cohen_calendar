@@ -13,7 +13,12 @@ const events = [
     title: "Event 1",
     start: new Date(2023, 7, 31, 10, 0),
     end: new Date(2023, 7, 31, 12, 0),
-    imageUrl: "https://www.w3schools.com/images/lamp.jpg", // URL to your image
+    imageUrl: "https://www.w3schools.com/images/lamp.jpg",
+  },
+  {
+    title: "Lidor",
+    start: new Date(PERSONS[0].year, PERSONS[0].month, PERSONS[0].day, 10, 0),
+    end: new Date(PERSONS[0].year, PERSONS[0].month, PERSONS[0].day, 12, 0),
   },
 ];
 
@@ -30,7 +35,7 @@ const EventComponent = ({ event }) => (
 
 export default function Home() {
   return (
-    // ! top and bottom display - to printing calendar by the browser :
+    // ! up and down display - to printing calendar by the browser :
     <>
       <div className="">
         <div className=" w-screen h-screen">

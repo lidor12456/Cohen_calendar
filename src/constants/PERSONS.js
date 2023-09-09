@@ -2,9 +2,9 @@ export const PERSONS = [
   {
     id: "1",
     name: "Lidor",
-    day: "04",
-    month: "06",
-    year: "1993",
+    day: 4,
+    month: 6,
+    year: 1993,
   },
   {
     id: "2",
