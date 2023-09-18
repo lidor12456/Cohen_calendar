@@ -23,10 +23,25 @@ function PersonCard({ person, events, setEvents }) {
   useEffect(() => {
     if (personData) {
       const eventsFromPerson = personData.items.map((item, i) => ({
-        name: item.name,
-        year: item.date.slice(0, 4),
-        month: item.date.slice(5, 7),
-        day: item.date.slice(8, 10),
+        // name: item.name,
+        // year: item.date.slice(0, 4),
+        // month: item.date.slice(5, 7),
+        // day: item.date.slice(8, 10),
+        title: "mazal tov",
+        start: new Date(
+          item.date.slice(0, 4),
+          item.date.slice(5, 7) - 1,
+          item.date.slice(8, 10),
+          10,
+          0
+        ),
+        end: new Date(
+          item.date.slice(0, 4),
+          item.date.slice(5, 7) - 1,
+          item.date.slice(8, 10),
+          12,
+          0
+        ),
       }));
 
       // Update the events state by merging new events
@@ -58,4 +73,4 @@ function PersonCard({ person, events, setEvents }) {
   );
 }
 
-export default React.memo(PersonCard);
+export default PersonCard;
