@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className="bg-[#e5e7eb] shadow-lg p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-white text-2xl font-bold">
-          Your Logo
+          Calendar
         </Link>
         <ul className="flex space-x-4">
           <li>
