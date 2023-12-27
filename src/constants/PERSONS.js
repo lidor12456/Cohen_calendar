@@ -20,4 +20,11 @@ export const PERSONS = [
     month: "10",
     year: "1956",
   },
+  {
+    // id: "3",
+    name: "Test2",
+    day: "01",
+    month: "2",
+    year: "1926",
+  },
 ];
