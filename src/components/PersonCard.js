@@ -27,7 +27,7 @@ function PersonCard({ person, events, setEvents }) {
         // year: item.date.slice(0, 4),
         // month: item.date.slice(5, 7),
         // day: item.date.slice(8, 10),
-        title: "mazal tov",
+        title: `mazal tov ${item.name}`,
         start: new Date(
           item.date.slice(0, 4),
           item.date.slice(5, 7) - 1,
