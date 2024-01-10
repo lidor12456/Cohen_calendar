@@ -3,14 +3,14 @@ import { useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import moment from "moment";
-
 import PersonCard from "@/components/PersonCard";
 import { PERSONS } from "@/constants/PERSONS";
 
 export default function Home() {
   const localizer = momentLocalizer(moment);
-
+  const [persons, setPersons] = useState();
   const [events, setEvents] = useState([]);
+
   useEffect(() => {
     const manipulateEventsForCalendar = (events) => {
       let eventsForCalendar = [];
@@ -28,6 +28,17 @@ export default function Home() {
   }, []);
 
   console.log(events);
+
+  useEffect(() => {
+    async function fetchPersons() {
+      const response = await fetch("http://localhost:3000/api/persons");
+      const persons = await response.json();
+      setPersons(persons);
+      console.log(persons);
+    }
+    fetchPersons();
+  }, []);
+
   // [
   // {
   //   title: "Event 1",
@@ -58,14 +69,15 @@ export default function Home() {
     <>
       <div className="">
         <div className=" w-screen h-screen">
-          {PERSONS.map((person) => (
-            <PersonCard
-              person={person}
-              key={Number(person.id)}
-              events={events}
-              setEvents={setEvents}
-            />
-          ))}
+          {persons &&
+            persons.map((person) => (
+              <PersonCard
+                person={person}
+                key={Number(person.id)}
+                events={events}
+                setEvents={setEvents}
+              />
+            ))}
         </div>
         <div className="w-screen h-screen bg-white text-black p-2 rounded">
           <Calendar
