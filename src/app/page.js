@@ -1,34 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import PersonCard from "@/components/PersonCard";
 import PersonsList from "@/components/PersonsList";
 
 export default function Home() {
-  // const [persons, setPersons] = useState();
-
-  // useEffect(() => {
-  //   async function fetchPersons() {
-  //     const response = await fetch("http://localhost:3000/api/persons");
-  //     const persons = await response.json();
-  //     setPersons(persons);
-  //     console.log(persons);
-  //   }
-  //   fetchPersons();
-  // }, []);
-
   return (
-    // ! up and down display - to printing calendar by the browser :
     <>
       <div className="">
-        {/* <div className=" w-screen h-screen">
-          {persons &&
-            persons.map((person) => (
-              <PersonCard
-                person={person}
-                key={Number(person.id)}
-              />
-            ))}
-        </div> */}
         <PersonsList />
       </div>
     </>

@@ -22,9 +22,15 @@ export async function POST(req, res) {
     await client.connect();
     const db = client.db("cohen_calendar");
     const newPerson = await req.json();
-    const result = await db.collection("persons").insertMany(newPerson);
+    let result = null;
+    if (Array.isArray(newPerson)) {
+      result = await db.collection("persons").insertMany(newPerson);
+    } else {
+      result = await db.collection("persons").insertOne(newPerson);
+    }
     return NextResponse.json(result);
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: error });
   } finally {
     await client.close();

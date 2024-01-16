@@ -10,4 +10,30 @@ async function fetchSixYearsOfPersonsDates(person) {
   }
 }
 
-module.exports = { fetchSixYearsOfPersonsDates };
+async function postData(url, data) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        // Add any additional headers if needed
+      },
+      body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log("POST request successful:", responseData);
+
+    // return the response data if needed
+    return responseData;
+  } catch (error) {
+    console.error("Error during POST request:", error.message);
+    // Handle the error as needed
+  }
+}
+
+module.exports = { fetchSixYearsOfPersonsDates, postData };
