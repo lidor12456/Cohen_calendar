@@ -6,23 +6,29 @@ import { postData } from "../utils";
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First Name is required"),
   lastName: Yup.string().required("Last Name is required"),
-  email: Yup.string()
-    .email("Invalid email address")
-    .required("Email is required"),
+  day: Yup.number()
+    .required("Day is required")
+    .min(1, "Invalid day")
+    .max(31, "Invalid day"),
+  month: Yup.number()
+    .required("Month is required")
+    .min(1, "Invalid month")
+    .max(12, "Invalid month"),
+  year: Yup.number()
+    .required("Year is required")
+    .min(1900, "Invalid year")
+    .max(new Date().getFullYear(), "Invalid year"),
 });
 
 export default function AddNewPersonForm() {
   const initialValues = {
     firstName: "",
     lastName: "",
-    email: "",
+    day: "",
+    month: "",
+    year: "",
   };
 
-  const onSubmitt = (values) => {
-    // Handle form submission logic here
-    console.log("Form submitted:", values);
-    postData("http://localhost:3000/api/persons", values);
-  };
   async function onSubmit(values) {
     console.log("Form submitted:", values);
     await postData("http://localhost:3000/api/persons", values);
@@ -75,20 +81,62 @@ export default function AddNewPersonForm() {
           />
         </div>
 
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Email:
-          </label>
-          <Field
-            type="text"
-            id="email"
-            name="email"
-            className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-          />
-          <ErrorMessage name="email" component="div" className="text-red-500" />
+        <div className="mb-4 flex">
+          <div className="mr-4 w-1/3">
+            <label
+              htmlFor="day"
+              className="block text-gray-600 font-semibold mb-2"
+            >
+              Day:
+            </label>
+            <Field
+              type="number"
+              id="day"
+              name="day"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+            />
+            <ErrorMessage name="day" component="div" className="text-red-500" />
+          </div>
+
+          <div className="mr-4 w-1/3">
+            <label
+              htmlFor="month"
+              className="block text-gray-600 font-semibold mb-2"
+            >
+              Month:
+            </label>
+            <Field
+              type="number"
+              id="month"
+              name="month"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+            />
+            <ErrorMessage
+              name="month"
+              component="div"
+              className="text-red-500"
+            />
+          </div>
+
+          <div className="w-1/3">
+            <label
+              htmlFor="year"
+              className="block text-gray-600 font-semibold mb-2"
+            >
+              Year:
+            </label>
+            <Field
+              type="number"
+              id="year"
+              name="year"
+              className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+            />
+            <ErrorMessage
+              name="year"
+              component="div"
+              className="text-red-500"
+            />
+          </div>
         </div>
 
         <button

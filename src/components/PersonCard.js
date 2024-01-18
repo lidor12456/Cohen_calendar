@@ -22,7 +22,10 @@ function PersonCard({ person }) {
     <div>
       {personData && (
         <div>
-          <p>{person.name}</p>
+          <p>{person.firstName}</p>
+          <span>
+            <p>{person.lastName}</p>
+          </span>
         </div>
       )}
       <div className="flex flex-row gap-3">
@@ -32,8 +35,8 @@ function PersonCard({ person }) {
               key={item.date}
               className="px-1 py-1 w-1/2 rounded-lg bg-[#e5e7eb] shadow-lg"
             >
-              <p>{item.date}</p>
               <p>{`${item.heDateParts.d} ${item.heDateParts.m} ${item.heDateParts.y}`}</p>
+              <p>{item.date}</p>
             </div>
           ))}
       </div>
