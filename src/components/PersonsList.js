@@ -1,3 +1,4 @@
+"use client";
 import PersonCard from "./PersonCard";
 import { useState, useEffect } from "react";
 
@@ -7,8 +8,8 @@ export default function PersonsList() {
   useEffect(() => {
     async function fetchPersons() {
       const response = await fetch("http://localhost:3000/api/persons");
-      const persons = await response.json();
-      setPersons(persons);
+      const personsArr = await response.json();
+      setPersons(personsArr);
     }
     fetchPersons();
   }, []);
@@ -16,9 +17,9 @@ export default function PersonsList() {
   return (
     <div className=" w-screen h-screen">
       {persons &&
-        persons.map((person) => (
-          <PersonCard person={person} key={Number(person.id)} />
-        ))}
+        persons.map((item) => {
+          return <PersonCard person={item} key={Number(item.id)} />;
+        })}
     </div>
   );
 }

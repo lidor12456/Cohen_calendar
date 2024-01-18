@@ -1,9 +1,9 @@
+"use client";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { fetchSixYearsOfPersonsDates } from "@/app/utils";
 
 function PersonCard({ person }) {
-  const [personData, setPersonData] = useState(null);
+  const [personData, setPersonData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +27,7 @@ function PersonCard({ person }) {
       )}
       <div className="flex flex-row gap-3">
         {personData &&
-          personData.items.map((item) => (
+          personData.items?.map((item) => (
             <div
               key={item.date}
               className="px-1 py-1 w-1/2 rounded-lg bg-[#e5e7eb] shadow-lg"
