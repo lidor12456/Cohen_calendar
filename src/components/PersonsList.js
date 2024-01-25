@@ -15,10 +15,12 @@ export default function PersonsList() {
   }, []);
 
   return (
-    <div className=" w-screen h-screen">
+    <div className="  py-5 px-5 border-dotted rounded-md border-2 border-black-500">
       {persons &&
         persons.map((item) => {
-          return <PersonCard person={item} key={Number(item.id)} />;
+          return (
+            <PersonCard person={item} key={Math.floor(Math.random() * 100)} />
+          );
         })}
     </div>
   );

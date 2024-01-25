@@ -33,7 +33,7 @@ function PersonCard({ person }) {
           personData.items?.map((item) => (
             <div
               key={item.date}
-              className="px-1 py-1 w-1/2 rounded-lg bg-[#e5e7eb] shadow-lg"
+              className="px-1 py-1 w-1/2 border-solid rounded-md border-2 border-black-500 bg-[#174bb533] shadow-lg"
             >
               <p>{`${item.heDateParts.d} ${item.heDateParts.m} ${item.heDateParts.y}`}</p>
               <p>{item.date}</p>

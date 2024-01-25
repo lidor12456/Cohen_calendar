@@ -1,12 +1,10 @@
-"use client";
-import { useState, useEffect } from "react";
-import PersonsList from "@/components/PersonsList";
+import HomePageContent from "@/components/HomepageContent";
 
 export default function Home() {
   return (
     <>
       <div className="">
-        <PersonsList />
+        <HomePageContent />
       </div>
     </>
 
