@@ -1,3 +1,7 @@
+// import { connectMongoDB } from "@/lib/mongodb";
+// import User from "@/models/user";
+import User from "@/app/models/User";
+import connectToMongoDb from "@/app/db/dbConfig";
 import NextAuth from "next-auth/next";
 import GoogleProvider from "next-auth/providers/google";
 
@@ -8,6 +12,41 @@ const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
+  callbacks: {
+    async signIn({ user, account }) {
+      if (account.provider === "google") {
+        const { name, email } = user;
+        try {
+          const client = await connectToMongoDb();
+          await client.connect();
+          const db = client.db("cohen_calendar");
+
+          const userExists = await db.collection("users").findOne({ email });
+
+          if (!userExists) {
+            const res = await fetch("http://localhost:3000/api/user", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                name,
+                email,
+              }),
+            });
+
+            if (res.ok) {
+              return user;
+            }
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }
+
+      return user;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
