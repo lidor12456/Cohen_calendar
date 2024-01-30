@@ -11,15 +11,15 @@ export default function HomePageContent() {
           Explore the amazing features and join our community today!
         </p>
         <div className="flex justify-center">
-          <button
+          {/* <button
             onClick={() => signIn("google")}
             className="bg-blue-500 text-white py-2 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
           >
-            Login
+            SignIn
           </button>
           <button className="bg-gray-500 text-white py-2 px-4 rounded-lg hover:bg-gray-700 focus:outline-none focus:shadow-outline-gray active:bg-gray-800">
             Register
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
