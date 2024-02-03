@@ -31,7 +31,8 @@ export default function AddNewPersonForm() {
 
   async function onSubmit(values) {
     console.log("Form submitted:", values);
-    await postData("http://localhost:3000/api/persons", values);
+    const baseUrl = process.env.PRODUCTION_API_URL || "http://localhost:3000";
+    await postData(`${baseUrl}/api/persons`, values);
   }
 
   return (

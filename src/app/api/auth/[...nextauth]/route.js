@@ -19,12 +19,14 @@ const authOptions = {
         try {
           const client = await connectToMongoDb();
           await client.connect();
+          const baseUrl =
+            process.env.PRODUCTION_API_URL || "http://localhost:3000";
           const db = client.db("cohen_calendar");
 
           const userExists = await db.collection("users").findOne({ email });
 
           if (!userExists) {
-            const res = await fetch("http://localhost:3000/api/user", {
+            const res = await fetch(`${baseUrl}/api/user`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
