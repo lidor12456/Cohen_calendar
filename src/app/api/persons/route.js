@@ -1,3 +1,4 @@
+// get all persons
 import { NextRequest, NextResponse } from "next/server";
 import connectToMongoDb from "../../db/dbConfig";
 
