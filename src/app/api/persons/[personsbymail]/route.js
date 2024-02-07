@@ -15,9 +15,7 @@ export async function GET(request, context) {
     if (personsByMail.length > 0) {
       return NextResponse.json(personsByMail);
     } else {
-      return NextResponse.json({
-        error: "Unable to find persons by this mail",
-      });
+      return NextResponse.json([]);
     }
   } catch (error) {
     return NextResponse.json({ error: "Unable to connect" });

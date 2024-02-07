@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import connectToMongoDb from "../../db/dbConfig";
 
 export async function GET() {
-  const client = await connectToMongoDb();
+  const client = connectToMongoDb();
 
   try {
     await client.connect();
