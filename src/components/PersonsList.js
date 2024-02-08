@@ -8,17 +8,17 @@ export default function PersonsList() {
   const [persons, setPersons] = useState();
   const status = useSession();
   const userMail = status.data?.user?.email || "unknown";
-  const baseUrl = "http://localhost:3000";
+  // const baseUrl = "http://localhost:3000";
   // const baseUrl =
   //   process.env.NEXT_PUBLIC_PRODUCTION_API_URL ||
   //   "https://cohen-calendar.onrender.com";
 
   useEffect(() => {
     async function fetchPersons() {
-      console.log(process.env.NEXT_PUBLIC_PRODUCTION_API_URL);
-      console.log(userMail);
-      console.log(`${baseUrl}/api/persons/${userMail}`);
-      const response = await fetch(`${baseUrl}/api/persons/${userMail}`);
+      // console.log(process.env.NEXT_PUBLIC_PRODUCTION_API_URL);
+      // console.log(userMail);
+      // console.log(`${baseUrl}/api/persons/${userMail}`);
+      const response = await fetch(`/api/persons/${userMail}`);
       const personsArr = await response.json();
       setPersons(personsArr);
     }
