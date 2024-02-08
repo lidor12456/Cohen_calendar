@@ -18,7 +18,7 @@ export default function PersonsList() {
       setPersons(personsArr);
     }
     fetchPersons();
-  }, [userMail]);
+  }, [userMail, baseUrl]);
 
   return (
     <div className="  py-5 px-5 border-dotted rounded-md border-2 border-black-500">
