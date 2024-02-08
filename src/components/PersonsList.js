@@ -8,23 +8,28 @@ export default function PersonsList() {
   const [persons, setPersons] = useState();
   const status = useSession();
   const userMail = status.data?.user?.email || "unknown";
+  const baseUrl = "http://localhost:3000";
+  // const baseUrl =
+  //   process.env.NEXT_PUBLIC_PRODUCTION_API_URL ||
+  //   "https://cohen-calendar.onrender.com";
 
   useEffect(() => {
     async function fetchPersons() {
-      const baseUrl = process.env.PRODUCTION_API_URL;
-      console.log(baseUrl);
+      console.log(process.env.NEXT_PUBLIC_PRODUCTION_API_URL);
+      console.log(userMail);
+      console.log(`${baseUrl}/api/persons/${userMail}`);
       const response = await fetch(`${baseUrl}/api/persons/${userMail}`);
       const personsArr = await response.json();
       setPersons(personsArr);
     }
     fetchPersons();
-  }, [userMail, baseUrl]);
+  }, [userMail]);
 
   return (
     <div className="  py-5 px-5 border-dotted rounded-md border-2 border-black-500">
       {persons &&
-        // console.log(persons)
         persons?.map((item) => {
+          console.log(persons);
           return (
             <PersonCard person={item} key={Math.floor(Math.random() * 100)} />
           );
