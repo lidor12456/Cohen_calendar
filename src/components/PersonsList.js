@@ -11,7 +11,7 @@ export default function PersonsList() {
 
   useEffect(() => {
     async function fetchPersons() {
-      const baseUrl = process.env.PRODUCTION_API_URL || "http://localhost:3000";
+      const baseUrl = process.env.PRODUCTION_API_URL;
       console.log(baseUrl);
       const response = await fetch(`${baseUrl}/api/persons/${userMail}`);
       const personsArr = await response.json();
