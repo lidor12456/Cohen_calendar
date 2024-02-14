@@ -8,7 +8,11 @@ export default function HomePageContent() {
       <div className="bg-white px-10 py-20   border border-gray-300 rounded-lg shadow-md text-center">
         <h2 className="text-4xl font-bold mb-4">Welcome to Our Platform</h2>
         <p className="text-lg mb-8">
-          Explore the amazing features and join our community today!
+          Explore the amazing features for your hebrew calendar!
+        </p>
+        <p className="text-xs mb-8">
+          Jewish holidays and candle-lighting times are provided by Hebcal.com
+          with a CC BY 4.0 International License.
         </p>
         <div className="flex justify-center">
           {/* <button

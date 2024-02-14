@@ -12,19 +12,25 @@ const Navbar = () => {
           Calendar
         </Link>
         {status.status === "authenticated" ? (
-          <span>{`Hello ${status.data?.user?.name}`}</span>
+          <span className="text-gray-600">{`Hello ${status.data?.user?.name}`}</span>
         ) : (
-          <span>Please signin</span>
+          <span className="text-gray-600">Please Sign In</span>
         )}
         <ul className="flex space-x-4">
           <li>
-            <Link href="/home" className="text-white hover:text-blue-300">
-              Home
+            <Link
+              href="/personsList"
+              className="text-white hover:text-blue-300"
+            >
+              Your List
             </Link>
           </li>
-          <li>
-            <Link href="/about" className="text-white hover:text-blue-300">
-              About
+          <li className="mt-2">
+            <Link
+              href="/addnew"
+              className="bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+            >
+              Add New Person
             </Link>
           </li>
           <li>
@@ -33,14 +39,14 @@ const Navbar = () => {
                 onClick={() => signOut()}
                 className="bg-blue-500 text-white py-2 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
               >
-                SignOut
+                Sign Out
               </button>
             ) : (
               <button
                 onClick={() => signIn("google")}
                 className="bg-blue-500 text-white py-2 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
               >
-                SignIn
+                Sign In
               </button>
             )}
           </li>
