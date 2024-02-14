@@ -3,6 +3,7 @@ import { useSession } from "next-auth/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { postData } from "../utils";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First Name is required"),
@@ -43,122 +44,124 @@ export default function AddNewPersonForm() {
 
   return (
     <>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
-        <Form className="max-w-md mx-auto mt-8 bg-white p-8 rounded shadow-md">
-          <div className="mb-4">
-            <label
-              htmlFor="firstName"
-              className="block text-gray-600 font-semibold mb-2"
+      <ProtectedRoute>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={onSubmit}
+        >
+          <Form className="max-w-md mx-auto mt-8 bg-white p-8 rounded shadow-md">
+            <div className="mb-4">
+              <label
+                htmlFor="firstName"
+                className="block text-gray-600 font-semibold mb-2"
+              >
+                First Name:
+              </label>
+              <Field
+                type="text"
+                id="firstName"
+                name="firstName"
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+              />
+              <ErrorMessage
+                name="firstName"
+                component="div"
+                className="text-red-500"
+              />
+            </div>
+
+            <div className="mb-4">
+              <label
+                htmlFor="lastName"
+                className="block text-gray-600 font-semibold mb-2"
+              >
+                Last Name:
+              </label>
+              <Field
+                type="text"
+                id="lastName"
+                name="lastName"
+                className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+              />
+              <ErrorMessage
+                name="lastName"
+                component="div"
+                className="text-red-500"
+              />
+            </div>
+
+            <div className="mb-4 flex">
+              <div className="mr-4 w-1/3">
+                <label
+                  htmlFor="day"
+                  className="block text-gray-600 font-semibold mb-2"
+                >
+                  Day:
+                </label>
+                <Field
+                  type="number"
+                  id="day"
+                  name="day"
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+                />
+                <ErrorMessage
+                  name="day"
+                  component="div"
+                  className="text-red-500"
+                />
+              </div>
+
+              <div className="mr-4 w-1/3">
+                <label
+                  htmlFor="month"
+                  className="block text-gray-600 font-semibold mb-2"
+                >
+                  Month:
+                </label>
+                <Field
+                  type="number"
+                  id="month"
+                  name="month"
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+                />
+                <ErrorMessage
+                  name="month"
+                  component="div"
+                  className="text-red-500"
+                />
+              </div>
+
+              <div className="w-1/3">
+                <label
+                  htmlFor="year"
+                  className="block text-gray-600 font-semibold mb-2"
+                >
+                  Year:
+                </label>
+                <Field
+                  type="number"
+                  id="year"
+                  name="year"
+                  className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
+                />
+                <ErrorMessage
+                  name="year"
+                  component="div"
+                  className="text-red-500"
+                />
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
             >
-              First Name:
-            </label>
-            <Field
-              type="text"
-              id="firstName"
-              name="firstName"
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-            />
-            <ErrorMessage
-              name="firstName"
-              component="div"
-              className="text-red-500"
-            />
-          </div>
-
-          <div className="mb-4">
-            <label
-              htmlFor="lastName"
-              className="block text-gray-600 font-semibold mb-2"
-            >
-              Last Name:
-            </label>
-            <Field
-              type="text"
-              id="lastName"
-              name="lastName"
-              className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-            />
-            <ErrorMessage
-              name="lastName"
-              component="div"
-              className="text-red-500"
-            />
-          </div>
-
-          <div className="mb-4 flex">
-            <div className="mr-4 w-1/3">
-              <label
-                htmlFor="day"
-                className="block text-gray-600 font-semibold mb-2"
-              >
-                Day:
-              </label>
-              <Field
-                type="number"
-                id="day"
-                name="day"
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-              />
-              <ErrorMessage
-                name="day"
-                component="div"
-                className="text-red-500"
-              />
-            </div>
-
-            <div className="mr-4 w-1/3">
-              <label
-                htmlFor="month"
-                className="block text-gray-600 font-semibold mb-2"
-              >
-                Month:
-              </label>
-              <Field
-                type="number"
-                id="month"
-                name="month"
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-              />
-              <ErrorMessage
-                name="month"
-                component="div"
-                className="text-red-500"
-              />
-            </div>
-
-            <div className="w-1/3">
-              <label
-                htmlFor="year"
-                className="block text-gray-600 font-semibold mb-2"
-              >
-                Year:
-              </label>
-              <Field
-                type="number"
-                id="year"
-                name="year"
-                className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-              />
-              <ErrorMessage
-                name="year"
-                component="div"
-                className="text-red-500"
-              />
-            </div>
-          </div>
-
-          <button
-            type="submit"
-            className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
-          >
-            Submit
-          </button>
-        </Form>
-      </Formik>
+              Submit
+            </button>
+          </Form>
+        </Formik>
+      </ProtectedRoute>
     </>
   );
 }
