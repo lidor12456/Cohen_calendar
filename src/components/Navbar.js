@@ -17,10 +17,10 @@ const Navbar = () => {
           <span className="text-gray-600">Please Sign In</span>
         )}
         <ul className="flex space-x-4">
-          <li>
+          <li className="mt-2">
             <Link
               href="/personsList"
-              className="text-white hover:text-blue-300"
+              className="bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
             >
               Your List
             </Link>
