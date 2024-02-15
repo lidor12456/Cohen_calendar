@@ -32,7 +32,7 @@ export default function AddNewPersonForm() {
     year: "",
   };
 
-  async function onSubmit(values) {
+  async function onSubmit(values, { resetForm }) {
     const dataToSend = {
       ...values,
       createdBy: status?.data?.user?.email || "unknown",
@@ -40,6 +40,7 @@ export default function AddNewPersonForm() {
     console.log("Form submitted:", dataToSend);
     const baseUrl = process.env.PRODUCTION_API_URL || "http://localhost:3000";
     await postData(`${baseUrl}/api/persons`, dataToSend);
+    resetForm();
   }
 
   return (
