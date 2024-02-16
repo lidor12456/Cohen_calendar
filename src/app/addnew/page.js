@@ -38,8 +38,8 @@ export default function AddNewPersonForm() {
       createdBy: status?.data?.user?.email || "unknown",
     };
     console.log("Form submitted:", dataToSend);
-    const baseUrl = process.env.PRODUCTION_API_URL || "http://localhost:3000";
-    await postData(`${baseUrl}/api/persons`, dataToSend);
+    // const baseUrl = process.env.PRODUCTION_API_URL || "http://localhost:3000";
+    await postData(`/api/persons`, dataToSend);
     resetForm();
   }
 
