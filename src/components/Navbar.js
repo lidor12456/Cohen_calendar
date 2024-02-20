@@ -34,20 +34,16 @@ const Navbar = () => {
             ></path>
           </svg>
         </button>
-        {status.status === "authenticated" ? (
-          <span className="text-gray-600">{`Hello ${status.data?.user?.name}`}</span>
-        ) : (
-          <span className="text-gray-600">Please Sign In</span>
-        )}
+
         <ul
-          className={`md:flex flex-wrap items-center space-x-2 ${
+          className={`md:flex flex-col md:flex-row md:items-center md:space-x-2 ${
             isOpen ? "block" : "hidden"
           }`}
         >
           <li>
             <Link
               href="/personsList"
-              className="bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+              className="block md:inline-block bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
             >
               Your List
             </Link>
@@ -55,7 +51,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/addnew"
-              className="bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+              className="block md:inline-block bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
             >
               Add New Person
             </Link>
@@ -64,14 +60,14 @@ const Navbar = () => {
             {status.status === "authenticated" ? (
               <button
                 onClick={() => signOut()}
-                className="bg-red-500 text-white py-2 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                className="block md:inline-block bg-red-500 text-white py-2 px-4 rounded-lg mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
               >
                 Sign Out
               </button>
             ) : (
               <button
                 onClick={() => signIn("google")}
-                className="bg-blue-500 text-white py-2 px-4 rounded-lg mr-4 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+                className="block md:inline-block bg-blue-500 text-white py-2 px-4 rounded-lg mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
               >
                 Sign In
               </button>
@@ -79,6 +75,11 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
+      {status.status === "authenticated" ? (
+        <span className="text-gray-600">{`Hello ${status.data?.user?.name}`}</span>
+      ) : (
+        <span className="text-gray-600">Please Sign In</span>
+      )}
     </nav>
   );
 };
