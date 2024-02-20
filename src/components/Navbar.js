@@ -5,7 +5,7 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Link from "next/link";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -43,7 +43,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/personsList"
-              className="block md:inline-block bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+              className="block md:inline-block text-black md:text-white text-center md:bg-gray-500  py-2.5 px-4 border border-black md:border-none rounded-lg  mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
             >
               Your List
             </Link>
@@ -51,7 +51,7 @@ const Navbar = () => {
           <li>
             <Link
               href="/addnew"
-              className="block md:inline-block bg-gray-500 text-white py-2.5 px-4 rounded-lg mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+              className="block md:inline-block text-black md:text-white text-center md:bg-gray-500  py-2.5 px-4 border border-black md:border-none rounded-lg  mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
             >
               Add New Person
             </Link>
