@@ -8,7 +8,7 @@ export default function HomePageContent() {
       {/* Hero Section */}
       <div className="bg-indigo-300 w-full py-16 text-white text-center rounded-full">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-bold mb-4">Welcome to Our Platform</h2>
+          <h2 className="text-4xl font-black mb-4">ברוך הבא</h2>
           <p className="text-lg mb-8">
             Your Ultimate Destination for Hebrew Calendar Needs
           </p>
