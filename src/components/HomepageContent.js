@@ -1,12 +1,14 @@
 // components/HomePageContent.js
 "use client";
 import { signIn } from "next-auth/react";
+import { useConnectedUser } from "@/app/context/providers";
 
 export default function HomePageContent() {
+  const { userConnected } = useConnectedUser();
+  // console.log(userConnected);
   return (
-    <div className=" bg-gray-200 flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      {/* Hero Section */}
-      <div className="bg-indigo-300 w-full py-16 text-white text-center rounded-full">
+    <div className=" flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="bg-indigo-300 w-full py-16 text-white text-center">
         <div className="container mx-auto">
           <h2 className="text-4xl font-black mb-4">ברוך הבא</h2>
           <p className="text-lg mb-8">

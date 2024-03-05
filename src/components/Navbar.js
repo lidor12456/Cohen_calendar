@@ -1,19 +1,30 @@
 // components/Navbar.js
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { useConnectedUser } from "@/app/context/providers";
 import Link from "next/link";
 
 const Navbar = () => {
+  // async function getUserSession() {
+  //   const { userConnected } = await useConnectedUser();
+  //   console.log(userConnected);
+  //   return userConnected;
+  // }
+  // getUserSession();
+
+  // const status = getUserSession();
+  const status = useSession();
+  console.log(status);
+
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const status = useSession();
   return (
-    <nav className="bg-[#e5e7eb] shadow-lg p-4">
+    <nav className="bg-transparent shadow-lg p-4">
       <div className="container mx-auto flex justify-between items-center">
         <Link href="/" className="text-white text-2xl font-bold">
           Calendar
@@ -44,6 +55,7 @@ const Navbar = () => {
             <Link
               href="/personsList"
               className="block md:inline-block text-black md:text-white text-center md:bg-gray-500  py-2.5 px-4 border border-black md:border-none rounded-lg  mr-4 mb-2 md:mb-0 hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+              // className="ring-2 ring-purple-500 ring-offset-4 block md:inline-block md:text-black md:border md:border-black md:text-center hover:border hover:border-green  active:bg-blue-800"
             >
               Your List
             </Link>
