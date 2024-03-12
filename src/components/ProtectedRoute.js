@@ -8,6 +8,8 @@ const ProtectedRoute = ({ children }) => {
   useEffect(() => {
     if (!session.data) {
       router.push("/login"); // Redirect to login page if not authenticated
+    } else {
+      router.push("/addnew"); // Redirect to add new page if authenticated
     }
   }, [session, router]);
 

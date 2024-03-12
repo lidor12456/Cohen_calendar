@@ -1,22 +1,12 @@
 // components/Navbar.js
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useConnectedUser } from "@/app/context/providers";
 import Link from "next/link";
 
-const Navbar = () => {
-  // async function getUserSession() {
-  //   const { userConnected } = await useConnectedUser();
-  //   console.log(userConnected);
-  //   return userConnected;
-  // }
-  // getUserSession();
-
-  // const status = getUserSession();
+function Navbar() {
   const status = useSession();
-  console.log(status);
-
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -94,6 +84,6 @@ const Navbar = () => {
       )}
     </nav>
   );
-};
+}
 
 export default Navbar;

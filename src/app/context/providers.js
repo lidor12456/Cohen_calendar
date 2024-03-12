@@ -7,11 +7,6 @@ const connectedUserContext = createContext();
 export function ConnectedUserProvider({ children }) {
   const status = useSession();
   const [userConnected, setUserConnected] = useState(useSession());
-  // console.log(status)
-
-  useEffect(() => {
-    console.log(userConnected);
-  }, [userConnected]);
 
   return (
     <connectedUserContext.Provider value={{ userConnected }}>
