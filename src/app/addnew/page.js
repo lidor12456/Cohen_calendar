@@ -5,7 +5,8 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { postData } from "../utils";
 import ProtectedRoute from "@/components/ProtectedRoute";
-import DateField from "./components/DateField";
+import GeogDateFields from "./components/GoegDateFields";
+import HebrewDateFields from "./components/HebrewDateFields";
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First Name is required"),
@@ -14,6 +15,10 @@ const validationSchema = Yup.object({
     .required("Day is required")
     .min(1, "Invalid day")
     .max(31, "Invalid day"),
+  Hebday: Yup.number()
+    .required("נא להזין מספרים בלבד, לדוגמה : כב בחודש יש להקליד 22")
+    .min(1, "ערך מינימילי 1")
+    .max(30, "ערך מקסימלי 30"),
   month: Yup.number()
     .required("Month is required")
     .min(1, "Invalid month")
@@ -22,18 +27,13 @@ const validationSchema = Yup.object({
     .required("Year is required")
     .min(1900, "Invalid year")
     .max(new Date().getFullYear(), "Invalid year"),
+  Hebyear: Yup.number()
+    .required("יש להמיר את השנה למספר, לדוגמה : שנת התשפג היא 5783")
+    .min(0, "יש להזין תאריכים במספרים חיוביים בלבד")
+    .max(9999, "ערך מקסימלי 9999"),
 });
 
-const monthsArr = [
-  // { enName: "", heName: "" },
-  "tishrei",
-  "heshvan",
-];
-
 export default function AddNewPersonForm() {
-  const [date1Filled, setDate1Filled] = useState(false);
-  const [date2Filled, setDate2Filled] = useState(false);
-
   const status = useSession();
   const initialValues = {
     firstName: "",
@@ -41,6 +41,9 @@ export default function AddNewPersonForm() {
     day: "",
     month: "",
     year: "",
+    Hebday: "",
+    Hebmonth: "",
+    Hebyear: "",
     dropdownValue: "",
   };
 
@@ -231,11 +234,12 @@ export default function AddNewPersonForm() {
             <div className="ml-[15rem] my-3 [direction:rtl] text-base">
               אני יודע תאריך עברי :
             </div>
-            <DateField isDisabled={true} />
+            <HebrewDateFields />
             <div className="ml-[15rem] my-3 [direction:rtl] text-base">
               אני יודע תאריך לעוזי :
             </div>
-            <DateField />
+            <GeogDateFields />
+
             <button
               type="submit"
               className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
@@ -244,24 +248,6 @@ export default function AddNewPersonForm() {
             </button>
             <div>
               <label htmlFor="dropdownValue">Choose an option:</label>
-              <Field as="select" id="dropdownValue" name="dropdownValue">
-                {monthsArr.map((month) => {
-                  return (
-                    <option value={month} key={month}>
-                      {month}
-                    </option>
-                  );
-                })}
-                {/* <option value="">Select...</option>
-                <option value="option1">Option 1</option>
-                <option value="option2">Option 2</option>
-                <option value="option3">Option 3</option> */}
-              </Field>
-              <ErrorMessage
-                name="dropdownValue"
-                component="div"
-                className="text-red-500"
-              />
             </div>
           </Form>
         </Formik>

@@ -1,6 +1,7 @@
+"use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
-function DateField({ isDisabled }) {
+function GoegDateFields() {
   return (
     <div className="mb-4 flex">
       <div className="mr-4 w-1/3">
@@ -8,7 +9,6 @@ function DateField({ isDisabled }) {
           Day:
         </label>
         <Field
-          disabled={isDisabled}
           type="number"
           id="day"
           name="day"
@@ -52,4 +52,4 @@ function DateField({ isDisabled }) {
   );
 }
 
-export default DateField;
+export default GoegDateFields;
