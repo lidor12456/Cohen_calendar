@@ -7,6 +7,8 @@ import { postData } from "../utils";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import GeogDateFields from "./components/GoegDateFields";
 import HebrewDateFields from "./components/HebrewDateFields";
+// import { monthsArr } from "./components/HebrewDateFields";
+// ! togle שמרנדר את הקומפננטות תאריכים
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First Name is required"),
@@ -23,6 +25,7 @@ const validationSchema = Yup.object({
     .required("Month is required")
     .min(1, "Invalid month")
     .max(12, "Invalid month"),
+  // Hebmonth: Yup.string().required("Please select a product").min(2, "min"),
   year: Yup.number()
     .required("Year is required")
     .min(1900, "Invalid year")
@@ -34,6 +37,7 @@ const validationSchema = Yup.object({
 });
 
 export default function AddNewPersonForm() {
+  const [isHebrewDate, setIsHebrewDate] = useState(false);
   const status = useSession();
   const initialValues = {
     firstName: "",
@@ -44,7 +48,6 @@ export default function AddNewPersonForm() {
     Hebday: "",
     Hebmonth: "",
     Hebyear: "",
-    dropdownValue: "",
   };
 
   async function onSubmit(values, { resetForm }) {
@@ -231,14 +234,38 @@ export default function AddNewPersonForm() {
               </div>
             </div> */}
 
-            <div className="ml-[15rem] my-3 [direction:rtl] text-base">
-              אני יודע תאריך עברי :
-            </div>
-            <HebrewDateFields />
-            <div className="ml-[15rem] my-3 [direction:rtl] text-base">
-              אני יודע תאריך לעוזי :
-            </div>
-            <GeogDateFields />
+            <button
+              type="button"
+              className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline-blue active:bg-blue-800"
+              onClick={() => {
+                setIsHebrewDate((prev) => !prev);
+              }}
+            >
+              {!isHebrewDate
+                ? " בעצם אני יודע תאריך עברי"
+                : " בעצם אני יודע תאריך לועזי"}
+            </button>
+            {!isHebrewDate ? (
+              <>
+                <div className="ml-[15rem] my-3 [direction:rtl] text-base">
+                  אני יודע את התאריך הלעוזי :
+                </div>
+                <GeogDateFields />
+              </>
+            ) : (
+              <></>
+            )}
+
+            {isHebrewDate ? (
+              <>
+                <div className="ml-[15rem] my-3 [direction:rtl] text-base">
+                  אני יודע תאריך עברי :
+                </div>
+                <HebrewDateFields />
+              </>
+            ) : (
+              <></>
+            )}
 
             <button
               type="submit"

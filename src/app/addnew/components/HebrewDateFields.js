@@ -1,22 +1,24 @@
 "use client";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 
+export const monthsArr = [
+  // { number: 0, enName: "", heName: "" },
+  { number: 1, enName: "Nissan", heName: "ניסן" },
+  { number: 2, enName: "Iyyar", heName: "אייר" },
+  { number: 3, enName: "Sivan", heName: "סיון" },
+  { number: 4, enName: "Tamuz", heName: "תמוז" },
+  { number: 5, enName: "Av", heName: "אב" },
+  { number: 6, enName: "Elul", heName: "אלול" },
+  { number: 7, enName: "Tishrei", heName: "תשרי" },
+  { number: 8, enName: "Cheshvan", heName: "חשון" },
+  { number: 9, enName: "Kislev", heName: "כסלו" },
+  { number: 10, enName: "Tevet", heName: "טבת" },
+  { number: 11, enName: "Sh'vat", heName: "שבט" },
+  { number: 12, enName: "Adar Rishon", heName: " אדר א" },
+  { number: 13, enName: "Adar Sheini", heName: "אדר ב" },
+];
+
 function HebrewDateFields() {
-  const monthsArr = [
-    { number: 1, enName: "Nissan", heName: "ניסן" },
-    { number: 2, enName: "Iyyar", heName: "אייר" },
-    { number: 3, enName: "Sivan", heName: "סיון" },
-    { number: 4, enName: "Tamuz", heName: "תמוז" },
-    { number: 5, enName: "Av", heName: "אב" },
-    { number: 6, enName: "Elul", heName: "אלול" },
-    { number: 7, enName: "Tishrei", heName: "תשרי" },
-    { number: 8, enName: "Cheshvan", heName: "חשון" },
-    { number: 9, enName: "Kislev", heName: "כסלו" },
-    { number: 10, enName: "Tevet", heName: "טבת" },
-    { number: 11, enName: "Sh'vat", heName: "שבט" },
-    { number: 12, enName: "Adar Rishon", heName: " אדר א" },
-    { number: 13, enName: "Adar Sheini", heName: "אדר ב" },
-  ];
   return (
     <div className="mb-4 flex">
       <div className="mr-4 w-1/3">
@@ -42,21 +44,17 @@ function HebrewDateFields() {
         >
           Month:
         </label>
-        {/* <Field
-          type="number"
-          id="Hebmonth"
-          name="Hebmonth"
-          className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
-        /> */}
+
         <Field
           as="select"
           id="Hebmonth"
           name="Hebmonth"
           className="w-full px-3 py-2 border rounded focus:outline-none focus:border-blue-500"
         >
+          <option value=""></option>
           {monthsArr.map((month) => {
             return (
-              <option value={month.heName} key={month.number}>
+              <option value={month.enName} key={month.number}>
                 {month.heName}
               </option>
             );
