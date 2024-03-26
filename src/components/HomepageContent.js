@@ -1,11 +1,34 @@
 // components/HomePageContent.js
 "use client";
 import { signIn } from "next-auth/react";
-import { useConnectedUser } from "@/app/context/providers";
+import { HDate, months, gematriya, HebrewCalendar } from "@hebcal/core";
 
 export default function HomePageContent() {
-  const { userConnected } = useConnectedUser();
-  // console.log(userConnected);
+  // const hd1 = new HDate(15, months.CHESHVAN, 5769);
+  // const hd2 = hd1.add(1, "weeks"); // 7 Kislev 5769
+  // const hd3 = hd1.add(-3, "M"); // 30 Av 5768
+
+  // console.log(hd1);
+  // console.log(hd2);
+  // console.log(hd3);
+
+  // let gregorianDate = new Date(1993, 5, 4); // Month is zero-based, so 3 represents 4
+  // let hebrewDate = new HDate(gregorianDate);
+  // console.log(
+  //   "The Hebrew date corresponding to 4/6/93 is:",
+  //   hebrewDate.toString()
+  // );
+  // console.log(hebrewDate.greg());
+
+  // let gregorianDate = new Date(1993, 5, 4);
+  // let hebrewDate = new HDate(gregorianDate);
+  // let geogDatesByHebDate = ?? to do!! =>
+  // take the hebDate and change the year to current year.
+  // check this in documentation : HDate.fromGematriyaString Or HebrewCalendar :
+
+  const dt = new Date(1993, 5, 4);
+  const hd = HebrewCalendar.getBirthdayOrAnniversary(5782, dt);
+  console.log(hd.greg().toLocaleDateString("en-US"));
   return (
     <div className=" flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-indigo-300 w-full py-16 text-white text-center">
