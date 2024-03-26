@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { postData } from "../utils";
+import { postData, checkGeogDate } from "../utils";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import GeogDateFields from "./components/GoegDateFields";
 import HebrewDateFields from "./components/HebrewDateFields";
@@ -55,6 +55,11 @@ export default function AddNewPersonForm() {
       ...values,
       createdBy: status?.data?.user?.email || "unknown",
     };
+    if (checkGeogDate) {
+      dataToSend.Hebday = "";
+      dataToSend.Hebmonth = "";
+      dataToSend.Hebyear = "";
+    }
     console.log("Form submitted:", dataToSend);
     await postData(`/api/persons`, dataToSend);
     resetForm();

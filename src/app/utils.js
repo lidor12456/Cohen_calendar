@@ -1,3 +1,11 @@
+function checkGeogDate(personObj) {
+  if (personObj.day && personObj.month && personObj.year) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 async function fetchSixYearsOfPersonsDates(person) {
   try {
     person.fullName = `${person.firstName} ${person.lastName}`;
@@ -37,4 +45,4 @@ async function postData(url, data) {
   }
 }
 
-module.exports = { fetchSixYearsOfPersonsDates, postData };
+module.exports = { checkGeogDate, fetchSixYearsOfPersonsDates, postData };
