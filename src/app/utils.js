@@ -1,4 +1,6 @@
-function checkGeogDate(personObj) {
+import { HDate, HebrewCalendar } from "@hebcal/core";
+
+export function checkGeogDate(personObj) {
   if (personObj.day && personObj.month && personObj.year) {
     return true;
   } else {
@@ -6,7 +8,22 @@ function checkGeogDate(personObj) {
   }
 }
 
-async function fetchSixYearsOfPersonsDates(person) {
+export function findDatesByOneGeogDate(date) {
+  const currentHebrewYear = new HDate().getFullYear();
+  // create arr of 6 geog dates that point to the original heb date :
+
+  let datesArr = [];
+  for (let i = 0; i < 6; i++) {
+    datesArr.push(
+      HebrewCalendar.getBirthdayOrAnniversary(currentHebrewYear + i, date)
+        .greg()
+        .toLocaleDateString("he-IL")
+    );
+  }
+  return datesArr;
+}
+
+export async function fetchSixYearsOfPersonsDates(person) {
   try {
     person.fullName = `${person.firstName} ${person.lastName}`;
     const response = await fetch(
@@ -19,7 +36,7 @@ async function fetchSixYearsOfPersonsDates(person) {
   }
 }
 
-async function postData(url, data) {
+export async function postData(url, data) {
   try {
     const response = await fetch(url, {
       method: "POST",
@@ -45,4 +62,9 @@ async function postData(url, data) {
   }
 }
 
-module.exports = { checkGeogDate, fetchSixYearsOfPersonsDates, postData };
+// module.exports = {
+//   checkGeogDate,
+//   findDatesByOneGeogDate,
+//   fetchSixYearsOfPersonsDates,
+//   postData,
+// };

@@ -8,7 +8,6 @@ import ProtectedRoute from "@/components/ProtectedRoute";
 import GeogDateFields from "./components/GoegDateFields";
 import HebrewDateFields from "./components/HebrewDateFields";
 // import { monthsArr } from "./components/HebrewDateFields";
-// ! togle שמרנדר את הקומפננטות תאריכים
 
 const validationSchema = Yup.object({
   firstName: Yup.string().required("First Name is required"),

@@ -20,15 +20,30 @@ export default function HomePageContent() {
   // );
   // console.log(hebrewDate.greg());
 
-  // let gregorianDate = new Date(1993, 5, 4);
-  // let hebrewDate = new HDate(gregorianDate);
-  // let geogDatesByHebDate = ?? to do!! =>
-  // take the hebDate and change the year to current year.
-  // check this in documentation : HDate.fromGematriyaString Or HebrewCalendar :
+  //  ! to do => find the right way to present 6 dates after the current year
+  function findDatesByOneGeogDate(date) {
+    const currentHebrewYear = new HDate().getFullYear();
+    // find the geog date that point to the original heb date in current year :
+    const hebDateByGeogDate = HebrewCalendar.getBirthdayOrAnniversary(
+      currentHebrewYear,
+      date
+    );
 
-  const dt = new Date(1993, 5, 4);
-  const hd = HebrewCalendar.getBirthdayOrAnniversary(5782, dt);
-  console.log(hd.greg().toLocaleDateString("en-US"));
+    console.log(hebDateByGeogDate.greg().toLocaleDateString("he-IL"));
+
+    let datesArr = [];
+    for (let i = 0; i < 6; i++) {
+      datesArr.push(
+        HebrewCalendar.getBirthdayOrAnniversary(currentHebrewYear + i, date)
+          .greg()
+          .toLocaleDateString("he-IL")
+      );
+    }
+    console.log(datesArr);
+  }
+
+  findDatesByOneGeogDate(new Date(2014, 2, 2));
+
   return (
     <div className=" flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-indigo-300 w-full py-16 text-white text-center">

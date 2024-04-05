@@ -20,9 +20,9 @@ export default function PersonsList() {
   return (
     <div className="  py-5 px-5 border-dotted rounded-md border-2 border-black-500">
       {persons &&
-        persons.map((item) => {
+        persons.map((person) => {
           // console.log(persons);
-          return <PersonCard person={item} key={item._id} />;
+          return <PersonCard person={person} key={person._id} />;
         })}
     </div>
   );

@@ -1,9 +1,13 @@
 "use client";
 import { useEffect, useState } from "react";
-import { fetchSixYearsOfPersonsDates } from "@/app/utils";
+import {
+  fetchSixYearsOfPersonsDates,
+  findDatesByOneGeogDate,
+} from "@/app/utils";
 
 function PersonCard({ person }) {
   const [personData, setPersonData] = useState([]);
+  const [personData2, setPersonData2] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +20,21 @@ function PersonCard({ person }) {
     };
 
     fetchData();
+  }, []);
+
+  useEffect(() => {
+    try {
+      const data2 = findDatesByOneGeogDate(
+        new Date(person.year, person.month - 1, person.day)
+      );
+      setPersonData2(data2);
+      console.log(data2);
+      console.log(person);
+    } catch (e) {
+      console.log(e.message);
+    }
+
+    // fetchData();
   }, []);
 
   return (
